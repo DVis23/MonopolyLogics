@@ -5,6 +5,7 @@ import ru.vsu.cs.Player;
 import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UtilityCompany implements Cell {
     private String name;
@@ -46,20 +47,20 @@ public class UtilityCompany implements Cell {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - 1200);
 
-        UtilityCompany [] utilityCompanies = playingField.getUtilityCompanies();
-        for (int i = 0; i < utilityCompanies.length; i++) {
-            if(utilityCompanies[i].getOwner() != null && utilityCompanies[i].getOwner().equals(player)) {
-                utilityCompanies[i].setIncome(utilityCompanies[i].getCost()/4 +
-                        utilityCompanies[i].getCost()*numberUtilityCompany(player, playingField)/4);
+        List<UtilityCompany> utilityCompanies = playingField.getUtilityCompanies();
+        for (int i = 0; i < utilityCompanies.size(); i++) {
+            if(utilityCompanies.get(i).getOwner() != null && utilityCompanies.get(i).getOwner().equals(player)) {
+                utilityCompanies.get(i).setIncome(utilityCompanies.get(i).getCost()/4 +
+                        utilityCompanies.get(i).getCost()*numberUtilityCompany(player, playingField)/4);
             }
         }
     }
 
     private int numberUtilityCompany(Player player, PlayingField playingField) {
-        UtilityCompany [] utilityCompanies = playingField.getUtilityCompanies();
+        List<UtilityCompany> utilityCompanies = playingField.getUtilityCompanies();
         int cost = 0;
-        for (int i = 0; i < utilityCompanies.length; i++) {
-            if(utilityCompanies[i].getOwner() != null && utilityCompanies[i].getOwner().equals(player)) cost++;
+        for (int i = 0; i < utilityCompanies.size(); i++) {
+            if(utilityCompanies.get(i).getOwner() != null && utilityCompanies.get(i).getOwner().equals(player)) cost++;
         }
         return cost;
     }

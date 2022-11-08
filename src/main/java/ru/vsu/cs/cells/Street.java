@@ -5,6 +5,7 @@ import ru.vsu.cs.Player;
 import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Street implements Cell {
 
@@ -38,9 +39,9 @@ public class Street implements Cell {
 
     public void deleteOwner(PlayingField playingField) {
         owner = null;
-        Street [] streets = playingField.getStreetTheSameColor(color);
-        for (int i = 0; i < streets.length; i++) {
-            streets[i].deleteHotel();
+        List<Street> streets = playingField.getStreetTheSameColor(color);
+        for (int i = 0; i < streets.size(); i++) {
+            streets.get(i).deleteHotel();
         }
 
     }
@@ -53,9 +54,9 @@ public class Street implements Cell {
     }
 
     public boolean availabilityOfStreets(Player player, PlayingField playingField){
-        Street [] streets = playingField.getStreetTheSameColor((Color) color);
-        for (int i = 0; i < streets.length; i++) {
-            if(streets[i].getOwner() == null || !player.equals(streets[i].getOwner())) return false;
+        List<Street> streets = playingField.getStreetTheSameColor((Color) color);
+        for (int i = 0; i < streets.size(); i++) {
+            if(streets.get(i).getOwner() == null || !player.equals(streets.get(i).getOwner())) return false;
         }
         return true;
     }
@@ -64,9 +65,9 @@ public class Street implements Cell {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - cost);
         if (availabilityOfStreets(player, playingField)) {
-            Street [] streets = playingField.getStreetTheSameColor((Color) color);
-            for (int i = 0; i < streets.length; i++) {
-                streets[i].setIncome(streets[i].getCost()/2);
+            List<Street> streets = playingField.getStreetTheSameColor((Color) color);
+            for (int i = 0; i < streets.size(); i++) {
+                streets.get(i).setIncome(streets.get(i).getCost()/2);
             }
 
         }
@@ -96,7 +97,7 @@ public class Street implements Cell {
         BLUE
     }
 
-    public Object getColor() {
+    public Color getColor() {
         return color;
     }
     public String getName() {

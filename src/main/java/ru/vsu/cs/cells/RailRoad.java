@@ -5,6 +5,7 @@ import ru.vsu.cs.Player;
 import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RailRoad implements Cell {
     private String name;
@@ -43,10 +44,10 @@ public class RailRoad implements Cell {
     }
 
     private int numberRailRoad(Player player, PlayingField playingField) {
-        RailRoad [] railRoads = playingField.getAllRailRoads();
+        List<RailRoad> railRoads = playingField.getAllRailRoads();
         int cost = 0;
-        for (int i = 0; i < railRoads.length; i++) {
-            if(railRoads[i].getOwner() != null && railRoads[i].getOwner().equals(player)) cost++;
+        for (int i = 0; i < railRoads.size(); i++) {
+            if(railRoads.get(i).getOwner() != null && railRoads.get(i).getOwner().equals(player)) cost++;
         }
         return cost;
     }
@@ -54,10 +55,10 @@ public class RailRoad implements Cell {
     private void buyRailRoad(Player player, PlayingField playingField) {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - cost);
-        RailRoad [] railRoads = playingField.getAllRailRoads();
-        for (int i = 0; i < railRoads.length; i++) {
-            if(railRoads[i].getOwner() != null && railRoads[i].getOwner().equals(player)) {
-                railRoads[i].setIncome(railRoads[i].getCost()/4 + railRoads[i].getCost()*numberRailRoad(player, playingField)/8);
+        List<RailRoad> railRoads = playingField.getAllRailRoads();
+        for (int i = 0; i < railRoads.size(); i++) {
+            if(railRoads.get(i).getOwner() != null && railRoads.get(i).getOwner().equals(player)) {
+                railRoads.get(i).setIncome(railRoads.get(i).getCost()/4 + railRoads.get(i).getCost()*numberRailRoad(player, playingField)/8);
             }
         }
     }
