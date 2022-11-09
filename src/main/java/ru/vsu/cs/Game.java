@@ -10,7 +10,7 @@ import java.util.Random;
 public class Game {
     private ArrayList<Player> players;
     private GameState gameState;
-    private PlayingField playingField = new PlayingField();
+    private final PlayingField playingField = new PlayingField();
 
     public enum GameState {
         PLAYING,

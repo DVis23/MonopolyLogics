@@ -54,7 +54,7 @@ public class Street implements Cell {
     }
 
     public boolean availabilityOfStreets(Player player, PlayingField playingField){
-        List<Street> streets = playingField.getStreetTheSameColor((Color) color);
+        List<Street> streets = playingField.getStreetTheSameColor(color);
         for (int i = 0; i < streets.size(); i++) {
             if(streets.get(i).getOwner() == null || !player.equals(streets.get(i).getOwner())) return false;
         }
@@ -65,7 +65,7 @@ public class Street implements Cell {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - cost);
         if (availabilityOfStreets(player, playingField)) {
-            List<Street> streets = playingField.getStreetTheSameColor((Color) color);
+            List<Street> streets = playingField.getStreetTheSameColor(color);
             for (int i = 0; i < streets.size(); i++) {
                 streets.get(i).setIncome(streets.get(i).getCost()/2);
             }
@@ -114,6 +114,6 @@ public class Street implements Cell {
         return numberHotel;
     }
     public int getCostHotel() {
-        return getCostHotel();
+        return costHotel;
     }
 }
