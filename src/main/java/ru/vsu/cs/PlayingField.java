@@ -80,13 +80,12 @@ public class PlayingField {
             put(Street.Color.YELLOW, new ArrayList<>());
             put(Street.Color.GREEN, new ArrayList<>());
             put(Street.Color.BLUE, new ArrayList<>());
-        }};;
-        for (int i = 0; i < cells.length; i++) {
-            Cell cell = cells[i];
+        }};
+        for (Cell cell : cells) {
             if (cell.getClass() == Street.class) {
-                List<Street> list = streets.get(((Street)cell).getColor());
+                List<Street> list = streets.get(((Street) cell).getColor());
                 list.add((Street) cell);
-                streets.put(((Street)cell).getColor(), list);
+                streets.put(((Street) cell).getColor(), list);
             }
         }
         return streets;
@@ -94,8 +93,7 @@ public class PlayingField {
 
     private List<RailRoad> defineRailRoad(Cell [] cells) {
         List<RailRoad> list = new ArrayList<>();
-        for (int i = 0; i < cells.length; i++) {
-            Cell cell = cells[i];
+        for (Cell cell : cells) {
             if (cell.getClass() == RailRoad.class) {
                 list.add((RailRoad) cell);
             }
@@ -105,8 +103,7 @@ public class PlayingField {
 
     private List<UtilityCompany> defineUtilityCompany(Cell [] cells) {
         List<UtilityCompany> list = new ArrayList<>();
-        for (int i = 0; i < cells.length; i++) {
-            Cell cell = cells[i];
+        for (Cell cell : cells) {
             if (cell.getClass() == UtilityCompany.class) {
                 list.add((UtilityCompany) cell);
             }

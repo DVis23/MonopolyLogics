@@ -45,20 +45,20 @@ public class Game {
     public void deletePlayer(Player player) {
         players.remove(player);
         Cell [] cells = playingField.getCells();
-        for (int i = 0; i < cells.length; i++) {
-            if (cells[i].getClass() == Street.class){
-                if (((Street)cells[i]).getOwner() == player) {
-                    ((Street)cells[i]).deleteOwner(playingField);
+        for (Cell cell : cells) {
+            if (cell.getClass() == Street.class) {
+                if (((Street) cell).getOwner() == player) {
+                    ((Street) cell).deleteOwner(playingField);
                 }
             }
-            if (cells[i].getClass() == RailRoad.class){
-                if (((RailRoad)cells[i]).getOwner() == player) {
-                    ((RailRoad)cells[i]).deleteOwner();
+            if (cell.getClass() == RailRoad.class) {
+                if (((RailRoad) cell).getOwner() == player) {
+                    ((RailRoad) cell).deleteOwner();
                 }
             }
-            if (cells[i].getClass() == UtilityCompany.class){
-                if (((UtilityCompany)cells[i]).getOwner() == player) {
-                    ((UtilityCompany)cells[i]).deleteOwner();
+            if (cell.getClass() == UtilityCompany.class) {
+                if (((UtilityCompany) cell).getOwner() == player) {
+                    ((UtilityCompany) cell).deleteOwner();
                 }
             }
         }

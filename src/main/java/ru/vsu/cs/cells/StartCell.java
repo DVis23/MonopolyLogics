@@ -14,7 +14,7 @@ public class StartCell implements Cell {
     }
     @Override
     public void action(Player player, PlayingField playingField, ArrayList<Player> players){
-        player.setLiberalValues(player.getLiberalValues() + 2000);
+        player.setLiberalValues(player.getLiberalValues() + prize);
     }
 
 }

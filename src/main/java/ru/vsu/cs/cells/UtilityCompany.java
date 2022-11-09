@@ -48,10 +48,10 @@ public class UtilityCompany implements Cell {
         player.setLiberalValues(player.getLiberalValues() - 1200);
 
         List<UtilityCompany> utilityCompanies = playingField.getUtilityCompanies();
-        for (int i = 0; i < utilityCompanies.size(); i++) {
-            if(utilityCompanies.get(i).getOwner() != null && utilityCompanies.get(i).getOwner().equals(player)) {
-                utilityCompanies.get(i).setIncome(utilityCompanies.get(i).getCost()/4 +
-                        utilityCompanies.get(i).getCost()*numberUtilityCompany(player, playingField)/4);
+        for (UtilityCompany utilityCompany : utilityCompanies) {
+            if (utilityCompany.getOwner() != null && utilityCompany.getOwner().equals(player)) {
+                utilityCompany.setIncome(utilityCompany.getCost() / 4 +
+                        utilityCompany.getCost() * numberUtilityCompany(player, playingField) / 4);
             }
         }
     }
@@ -59,8 +59,8 @@ public class UtilityCompany implements Cell {
     private int numberUtilityCompany(Player player, PlayingField playingField) {
         List<UtilityCompany> utilityCompanies = playingField.getUtilityCompanies();
         int cost = 0;
-        for (int i = 0; i < utilityCompanies.size(); i++) {
-            if(utilityCompanies.get(i).getOwner() != null && utilityCompanies.get(i).getOwner().equals(player)) cost++;
+        for (UtilityCompany utilityCompany : utilityCompanies) {
+            if (utilityCompany.getOwner() != null && utilityCompany.getOwner().equals(player)) cost++;
         }
         return cost;
     }

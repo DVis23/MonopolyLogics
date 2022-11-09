@@ -46,8 +46,8 @@ public class RailRoad implements Cell {
     private int numberRailRoad(Player player, PlayingField playingField) {
         List<RailRoad> railRoads = playingField.getAllRailRoads();
         int cost = 0;
-        for (int i = 0; i < railRoads.size(); i++) {
-            if(railRoads.get(i).getOwner() != null && railRoads.get(i).getOwner().equals(player)) cost++;
+        for (RailRoad railRoad : railRoads) {
+            if (railRoad.getOwner() != null && railRoad.getOwner().equals(player)) cost++;
         }
         return cost;
     }
@@ -56,9 +56,9 @@ public class RailRoad implements Cell {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - cost);
         List<RailRoad> railRoads = playingField.getAllRailRoads();
-        for (int i = 0; i < railRoads.size(); i++) {
-            if(railRoads.get(i).getOwner() != null && railRoads.get(i).getOwner().equals(player)) {
-                railRoads.get(i).setIncome(railRoads.get(i).getCost()/4 + railRoads.get(i).getCost()*numberRailRoad(player, playingField)/8);
+        for (RailRoad railRoad : railRoads) {
+            if (railRoad.getOwner() != null && railRoad.getOwner().equals(player)) {
+                railRoad.setIncome(railRoad.getCost() / 4 + railRoad.getCost() * numberRailRoad(player, playingField) / 8);
             }
         }
     }

@@ -34,14 +34,14 @@ public class Chance implements Cell {
     }
     private void chance3(Player player, ArrayList<Player> players) {
         player.setLiberalValues(player.getLiberalValues() + (players.size()-1)*500);
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i) != player) players.get(i).setLiberalValues(players.get(i).getLiberalValues() - 500);
+        for (Player value : players) {
+            if (value != player) value.setLiberalValues(value.getLiberalValues() - 500);
         }
     }
     private void chance4(Player player, ArrayList<Player> players) {
         player.setLiberalValues(player.getLiberalValues() - (players.size()-1)*500);
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i) != player) players.get(i).setLiberalValues(players.get(i).getLiberalValues() + 500);
+        for (Player value : players) {
+            if (value != player) value.setLiberalValues(value.getLiberalValues() + 500);
         }
     }
 

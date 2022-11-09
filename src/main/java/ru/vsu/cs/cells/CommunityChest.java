@@ -35,8 +35,8 @@ public class CommunityChest implements Cell {
     }
     private void communityChest4(Player player, ArrayList<Player> players) {
         player.setLiberalValues(player.getLiberalValues() - (players.size()-1)*1000);
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i) != player) players.get(i).setLiberalValues(players.get(i).getLiberalValues() + 1000);
+        for (Player value : players) {
+            if (value != player) value.setLiberalValues(value.getLiberalValues() + 1000);
         }
     }
 
