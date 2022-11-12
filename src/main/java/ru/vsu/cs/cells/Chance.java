@@ -7,7 +7,7 @@ import ru.vsu.cs.PlayingField;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Chance implements Cell {
+public class Chance extends Cell {
     private int i;
 
     @Override

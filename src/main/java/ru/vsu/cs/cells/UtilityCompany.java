@@ -7,9 +7,9 @@ import ru.vsu.cs.PlayingField;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilityCompany implements Cell {
-    private String name;
-    private int cost;
+public class UtilityCompany extends Cell {
+    private final String name;
+    private final int cost;
     private int income;
     private Player owner;
 

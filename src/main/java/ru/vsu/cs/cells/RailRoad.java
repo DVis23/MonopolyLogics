@@ -7,7 +7,7 @@ import ru.vsu.cs.PlayingField;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RailRoad implements Cell {
+public class RailRoad extends Cell {
     private String name;
     private int cost;
     private int income;

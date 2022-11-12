@@ -7,7 +7,7 @@ import ru.vsu.cs.PlayingField;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CommunityChest implements Cell {
+public class CommunityChest extends Cell {
     private int i;
 
     @Override

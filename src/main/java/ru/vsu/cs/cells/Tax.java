@@ -6,7 +6,7 @@ import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
 
-public class Tax implements Cell {
+public class Tax extends Cell {
 
     @Override
     public void action(Player player, PlayingField playingField, ArrayList<Player> players) {

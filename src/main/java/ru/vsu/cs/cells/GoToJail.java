@@ -6,7 +6,7 @@ import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
 
-public class GoToJail implements Cell {
+public class GoToJail extends Cell {
 
     @Override
     public void action(Player player, PlayingField playingField, ArrayList<Player> players) {

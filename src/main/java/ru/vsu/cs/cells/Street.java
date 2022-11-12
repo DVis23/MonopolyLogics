@@ -7,7 +7,7 @@ import ru.vsu.cs.PlayingField;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Street implements Cell {
+public class Street extends Cell {
 
     private String name;
     private Color color;

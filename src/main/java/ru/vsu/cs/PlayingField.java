@@ -14,7 +14,7 @@ public class PlayingField {
     private final List <UtilityCompany> utilityCompanies;
 
     public PlayingField(){
-        Chance chance = new Chance();
+        Chance chance = new Chance();                                      //json
         CommunityChest communityChest = new CommunityChest();
         cells = new Cell[] {
                 new StartCell(2000), //0

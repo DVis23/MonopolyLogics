@@ -6,7 +6,7 @@ import ru.vsu.cs.PlayingField;
 
 import java.util.ArrayList;
 
-public class StartCell implements Cell {
+public class StartCell extends Cell {
     private int prize;
 
     public StartCell(int prize) {
