@@ -13,8 +13,8 @@ public class UtilityCompany extends Cell {
     private int income;
     private Player owner;
 
-    public UtilityCompany(String name) {
-        cost = 1500;
+    public UtilityCompany(String name, int cost) {
+        this.cost = cost;
         income = cost/4;
         this.name = name;
         owner = null;

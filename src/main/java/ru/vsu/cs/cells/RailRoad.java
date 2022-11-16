@@ -13,9 +13,9 @@ public class RailRoad extends Cell {
     private int income;
     private Player owner;
 
-    public RailRoad(String name) {
+    public RailRoad(String name, int cost) {
         this.name = name;
-        cost = 1200;
+        this.cost = cost;
         income = cost/4;
         owner = null;
     }

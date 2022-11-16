@@ -1,23 +1,25 @@
 package ru.vsu.cs;
 
+import org.json.simple.parser.ParseException;
 import ru.vsu.cs.cells.RailRoad;
 import ru.vsu.cs.cells.Street;
 import ru.vsu.cs.cells.UtilityCompany;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
     private ArrayList<Player> players;
     private GameState gameState;
-    private final PlayingField playingField = new PlayingField();
+    private final PlayingField playingField = new PlayingField(ReadingPlayingField.readCells());
 
     public enum GameState {
         PLAYING,
         GAME_OVER
     }
 
-    public Game(ArrayList<Player> players) {
+    public Game(ArrayList<Player> players) throws IOException, ParseException {
         this.players = players;
         gameState = GameState.PLAYING;
     }

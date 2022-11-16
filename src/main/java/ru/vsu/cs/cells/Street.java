@@ -97,6 +97,20 @@ public class Street extends Cell {
         BLUE
     }
 
+    public static Color colorFromString(String str){
+        return switch (str) {
+            case "BROWN" -> Color.BROWN;
+            case "WHITE" -> Color.WHITE;
+            case "ROSE" -> Color.ROSE;
+            case "ORANGE" -> Color.ORANGE;
+            case "RED" -> Color.RED;
+            case "YELLOW" -> Color.YELLOW;
+            case "GREEN" -> Color.GREEN;
+            case "BLUE" -> Color.BLUE;
+            default -> null;
+        };
+    }
+
     public Color getColor() {
         return color;
     }
