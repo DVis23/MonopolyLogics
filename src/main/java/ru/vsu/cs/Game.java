@@ -6,22 +6,23 @@ import ru.vsu.cs.cells.Street;
 import ru.vsu.cs.cells.UtilityCompany;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
-    private ArrayList<Player> players;
+    private final List<Player> players;
     private GameState gameState;
-    private final PlayingField playingField = new PlayingField(ReadingPlayingField.readCells());
+    private final PlayingField playingField;
 
     public enum GameState {
         PLAYING,
         GAME_OVER
     }
 
-    public Game(ArrayList<Player> players) throws IOException, ParseException {
+    public Game(List<Player> players, String dir) throws IOException, ParseException {
         this.players = players;
         gameState = GameState.PLAYING;
+        playingField = new PlayingField(ReadingPlayingField.readCells(dir));
     }
 
     public void playerAction(Player player) {
@@ -55,12 +56,12 @@ public class Game {
             }
             if (cell.getClass() == RailRoad.class) {
                 if (((RailRoad) cell).getOwner() == player) {
-                    ((RailRoad) cell).deleteOwner();
+                    ((RailRoad) cell).deleteOwner(player, playingField);
                 }
             }
             if (cell.getClass() == UtilityCompany.class) {
                 if (((UtilityCompany) cell).getOwner() == player) {
-                    ((UtilityCompany) cell).deleteOwner();
+                    ((UtilityCompany) cell).deleteOwner(player, playingField);
                 }
             }
         }
@@ -71,7 +72,7 @@ public class Game {
         return gameState;
     }
     public void setGameState() {gameState = GameState.GAME_OVER;}
-    public ArrayList<Player> getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
     public PlayingField getPlayingField() {return playingField;}

@@ -8,16 +8,19 @@ import java.util.List;
 
 public class PlayingField {
 
-    private final Cell [] cells;
-    private final HashMap<Street.Color, List<Street>> streetOfTheSameColor;
-    private final List <RailRoad> railRoads;
-    private final List <UtilityCompany> utilityCompanies;
+    private  Cell [] cells;
+    private  HashMap<Street.Color, List<Street>> streetOfTheSameColor;
+    private  List <RailRoad> railRoads;
+    private  List <UtilityCompany> utilityCompanies;
 
     public PlayingField(Cell [] cells) {
         this.cells = cells;
         streetOfTheSameColor = defineStreet(cells);
         railRoads = defineRailRoad(cells);
         utilityCompanies = defineUtilityCompany(cells);
+    }
+
+    public PlayingField() {
     }
 
     private HashMap<Street.Color, List<Street>> defineStreet(Cell [] cells) {

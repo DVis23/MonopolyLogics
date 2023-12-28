@@ -1,10 +1,11 @@
 package ru.vsu.cs.cells;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.Cell;
 import ru.vsu.cs.Player;
 import ru.vsu.cs.PlayingField;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RailRoad extends Cell {
@@ -13,7 +14,10 @@ public class RailRoad extends Cell {
     private int income;
     private Player owner;
 
-    public RailRoad(String name, int cost) {
+    @JsonCreator
+    public RailRoad(@JsonProperty("cell") int index, @JsonProperty("name")String name,
+                    @JsonProperty("cost") int cost) {
+        setIndex(index);
         this.name = name;
         this.cost = cost;
         income = cost/4;
@@ -21,7 +25,7 @@ public class RailRoad extends Cell {
     }
 
     @Override
-    public void action(Player player, PlayingField playingField, ArrayList<Player> players) {
+    public void action(Player player, PlayingField playingField, List<Player> players) {
         if (player.getSkipping() == 0) {
             if (owner != null) {
                 player.setLiberalValues(player.getLiberalValues() - income);
@@ -30,9 +34,15 @@ public class RailRoad extends Cell {
         }
     }
 
-    public void deleteOwner() {
+    public void deleteOwner(Player player, PlayingField playingField) {
         owner = null;
         income = cost/4;
+        int numberRailRoad = numberRailRoad(player, playingField);
+        List<RailRoad> railRoads = playingField.getAllRailRoads();
+        for (RailRoad railRoad : railRoads) {
+            if (railRoad.getOwner() != null && railRoad.getOwner().equals(player)) railRoad.setIncome(railRoad.getCost()
+                    / 4 + railRoad.getCost() * numberRailRoad / 8);
+        }
     }
 
     public Player getOwner() {
@@ -55,16 +65,19 @@ public class RailRoad extends Cell {
     private void buyRailRoad(Player player, PlayingField playingField) {
         owner = player;
         player.setLiberalValues(player.getLiberalValues() - cost);
+        int numberRailRoad = numberRailRoad(player, playingField);
         List<RailRoad> railRoads = playingField.getAllRailRoads();
         for (RailRoad railRoad : railRoads) {
-            if (railRoad.getOwner() != null && railRoad.getOwner().equals(player)) {
-                railRoad.setIncome(railRoad.getCost() / 4 + railRoad.getCost() * numberRailRoad(player, playingField) / 8);
-            }
+            if (railRoad.getOwner() != null && railRoad.getOwner().equals(player)) railRoad.setIncome(railRoad.getCost()
+                    / 4 + railRoad.getCost() * numberRailRoad / 8);
+
         }
     }
 
-    public  String getName() {return name;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
     public int getCost() {return cost;}
+    public void setCost(int cost) {this.cost = cost;}
     public int getIncome() {return income;}
     public void setIncome(int income) {
         this.income = income;

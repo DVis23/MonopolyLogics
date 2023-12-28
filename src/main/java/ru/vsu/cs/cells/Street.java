@@ -1,25 +1,29 @@
 package ru.vsu.cs.cells;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.vsu.cs.Cell;
 import ru.vsu.cs.Player;
 import ru.vsu.cs.PlayingField;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Street extends Cell {
 
     private String name;
-    private Color color;
+    private final Color color;
     private int numberHotel;
     private int cost;
     private int costHotel;
     private int income;
     private Player owner;
 
-    public Street(String name, Color color,  int cost) {
+    @JsonCreator
+    public Street(@JsonProperty("name") String name, @JsonProperty("color") String color,
+                  @JsonProperty("cost") int cost, @JsonProperty("cell") int index) {
+        setIndex(index);
         this.name = name;
-        this.color = color;
+        this.color = colorFromString(color);
         this.cost = cost;
         income = cost/4;
         costHotel = cost/2;
@@ -28,7 +32,7 @@ public class Street extends Cell {
     }
 
     @Override
-    public void action(Player player, PlayingField playingField, ArrayList<Player> players){
+    public void action(Player player, PlayingField playingField, List<Player> players){
         if (player.getSkipping() == 0) {
             if (owner != null) {
                 player.setLiberalValues(player.getLiberalValues() - income);
@@ -43,8 +47,8 @@ public class Street extends Cell {
         for (Street street : streets) {
             street.deleteHotel();
         }
-
     }
+
     public Player getOwner() {
         return owner;
     }
@@ -117,9 +121,11 @@ public class Street extends Cell {
     public String getName() {
         return name;
     }
+    public void setName(String name) {this.name = name;}
     public int getCost() {
         return cost;
     }
+    public void setCost(int cost) {this.cost = cost;}
     public int getIncome() {
         return income;
     }
@@ -127,7 +133,13 @@ public class Street extends Cell {
     public int getNumberHotel() {
         return numberHotel;
     }
+    public void setNumberHotel(int numberHotel) {
+        this.numberHotel = numberHotel;
+    }
     public int getCostHotel() {
         return costHotel;
+    }
+    public void setCostHotel(int costHotel) {
+        this.costHotel = costHotel;
     }
 }
